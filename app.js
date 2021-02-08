@@ -5,7 +5,8 @@ const mealDetails = document.getElementById("meal-details");
 // Search Button Event
 searchBtn.addEventListener("click", () => {
   const inputText = document.getElementById("search-input-field").value;
-  fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`)
+  const url = `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputText}`;
+  fetch(url)
     .then((res) => res.json())
     .then((data) => {
       displayMealItems(data.meals);
@@ -23,13 +24,13 @@ const displayMealItems = (mealItems) => {
     alert("Please Enter a Meal Name First");
   } else {
     let mealDiv = "";
-    mealItems.forEach((singleFood) => {
+    mealItems.forEach((mealItem) => {
       mealDiv += `
                 <div>
-                    <div class="card card-div" onclick="displayMealDetails(${singleFood.idMeal})">
-                        <img class="img-fluid rounded" src="${singleFood.strMealThumb}" />
+                    <div class="card card-div" onclick="displayMealDetails(${mealItem.idMeal})">
+                        <img class="img-fluid rounded" src="${mealItem.strMealThumb}" />
                         <div class="card-body">
-                            <h4 class="card-title">${singleFood.strMeal}</h4>
+                            <h4 class="card-title">${mealItem.strMeal}</h4>
                         </div>
                     </div>
                 </div>
@@ -41,7 +42,8 @@ const displayMealItems = (mealItems) => {
 
 // Display Meal Details
 const displayMealDetails = (mealId) => {
-  fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`)
+  const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`;
+  fetch(url)
     .then((res) => res.json())
     .then((data) => {
       const mealDiv = `
