@@ -15,6 +15,7 @@ searchBtn.addEventListener("click", () => {
     .catch((err) => {
       alert("Please Enter a valid Meal Name");
     });
+  mealDetails.innerHTML = "";
 });
 
 // Display Meal Items
